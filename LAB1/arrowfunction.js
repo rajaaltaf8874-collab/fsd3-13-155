@@ -1,4 +1,4 @@
-//write a function a number between 0 to 9 and return in words.
+/*write a function a number between 0 to 9 and return in words.
 const numToWords=(num)=>{
     switch(num){
         case 0: return "Zero";
@@ -16,4 +16,12 @@ const numToWords=(num)=>{
 };
 console.log(numToWords(7));
 console.log(numToWords(3));
-console.log(numToWords(34));
+console.log(numToWords(34));*/
+const rollnum ="2503201000155";
+const digit=String(rollnum).split("");
+console.log(digits);
+let inwords="";
+digits.forEach((d)=> {
+    inwords +=" "+numToWords(d);
+});
+console.log(inwords);
