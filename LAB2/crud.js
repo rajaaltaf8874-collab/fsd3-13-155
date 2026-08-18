@@ -1,5 +1,17 @@
 import readline from "readline/promises";
+import { writeFile, readFile } from "fs/promises";
 import { stdin, stdout } from "process";
+
+const FILE = "products.json";
+
+const saveCart = async (cart) => {
+    await writeFile(FILE, JSON.stringify(cart, null, 2));
+};
+
+const getCart = async () => {
+    const data = await readFile(FILE, "utf-8");
+    return JSON.parse(data);
+};
 
 const main = async () => {
 
@@ -11,7 +23,6 @@ const main = async () => {
     let choice;
 
     do {
-
         console.log("\nWelcome to shopping cart 🛍️");
         console.log("1 --------- Add to cart");
         console.log("2 --------- Show cart");
@@ -23,34 +34,33 @@ const main = async () => {
 
         console.log("Entered choice:", choice);
 
-        switch (Number(choice)) {
+        switch (choice) {
 
             case 1:
-                console.log("add to cart");
+                console.log("Add to cart");
                 break;
 
             case 2:
-                console.log("show cart items");
+                console.log("Show cart items");
                 break;
 
             case 3:
-                console.log("remove items");
+                console.log("Remove items");
                 break;
 
             case 4:
-                console.log("update quantity");
+                console.log("Update quantity");
                 break;
 
             case 5:
-                console.log("see you later");
-                process.exit();
+                console.log("See you later");
                 break;
 
             default:
-                console.log("invalid choice, try again");
+                console.log("Invalid choice, try again");
         }
 
-    } while (choice != "5");
+    } while (choice !== 5);
 
     cin.close();
 };
