@@ -15,3 +15,31 @@ every request from client has a pair of { request ,response}
     -  it also create s folder node_modules automatically
     - node_modules holdes the package / library files
     - generally we ignore the node_modules by .gitignore
+    - Nodemon - it reatart the server automaticaly when file changes,to install
+    > npm i nodemon -D
+    Note : -D flag will install this package as developer dependency 
+    -  to execute any program update the package .json file then restart the server as 
+    <b>npm run dev</b>
+    - start -> it will execute the app on devlopement phase( only for developer)
+     - res: it will contents (json/html/plain) to the user/client
+     - req: it will retrieve the information from client to server
+      - server send also statusCodes to the client , that indicates he error / success message
+      # Status Codes
+       - 200 -> ok
+       - 201 -> Created
+       - 400 -> Bad request
+       - 401 ->  Unauthorised
+       - 403 -> forbidden
+       - 404 -> not found
+       - 500 -> internal server error
+
+       # content type
+       - text/ plain
+       - text/html
+       - application/json
+       - text / css
+       the content type and status code can be  send back to  client by two ways
+       1. res.writehread
+       2.res.setheader
+       3.statuscode
+
