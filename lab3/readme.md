@@ -43,3 +43,31 @@ every request from client has a pair of { request ,response}
        2.res.setheader
        3.statuscode
 
+## response as a HTML content
+1. res.end  
+    end("any html content/tag")
+2. HTML file
+- read by createReadStream
+- pipe with res
+## send html file to client
+- html file
+ - read html file uding createReadStream
+  - pipe it with res object
+  2. html content
+  send any html content/tags by using 
+  res.end(' <any html tag>')
+  ## JSON (javascript object notation)
+   - server returns data only not html contents because html contents will be written by frontend developer. the data is in JSON format.
+   -  JSON always store data in key value pair inclosed by '{}' array can be stored by '[]'. one pair of '{}' will represent one object and its property will be separated by','
+
+   ```
+   {
+    id : 1
+    name : 'mobile',
+    price : 25000,
+    rating : 4.5,
+    review : 200,
+   }
+   ```
+
+
