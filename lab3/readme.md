@@ -69,5 +69,13 @@ every request from client has a pair of { request ,response}
     review : 200,
    }
    ```
+   ## headers
+   Headers is used to tell the client , the type of data sent by the server it may be html file , json data plane textfiles ,CSS file any tokens (for login) 
+   1. text/plain -> text file
+   2. text/html -> html contents/file
+   3. application/json contents/file
+   4. text/CSS -> stylesheet
+   5. application/form -> for upoading file 
+   6. application/auth -> for tokens the headers can be set by res object at server side by two ways.
 
 
