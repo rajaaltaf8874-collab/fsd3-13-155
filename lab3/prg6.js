@@ -8,20 +8,31 @@ const server = http.createServer((req, res) => {
     
     } else if (req.url === "/" && req.method === "POST") {
         //console.log ("Request:",req);
-        let body = ''
-        req.on('data',(chunk)=>{
-            body +=chunk;
-        })
-        req.on("end",()=>{
-            const product =JSON.parse(body);
-            console.log("received product", product);
-             res.statusCode = 201;
-        res.end(JSON.stringify({msg:'product added',product}));
-        })
-       
-    } else if (req.url === "/" && req.method === "PUT") {
-        res.statusCode = 200;
-        res.end("PUT Request");
+        let body = "";
+        req.on("data", (chunk) => {
+            body += chunk;
+        });
+        req.on("end", () => {
+            const product = JSON.parse(body);
+            console.log("received product:", product);
+            res.statusCode = 201;
+        res.end(JSON.stringify({ message: "product added",product }));
+        });
+        
+    } else if (req.url.startsWith("/products/") && req.method === "PUT") {
+        const productID = req.url.split("/").pop();
+        console.log("Upadate Product id:",productID);
+        let body = "";
+        req.on("data", (chunk) => {
+            body += chunk;
+        });
+        req.on("end", () => {
+            const product = JSON.parse(body);
+            console.log("received product:", product);
+            res.statusCode = 201;
+        res.end(JSON.stringify({ message: "product updated",product }));
+        });
+    
     } else if (req.url === "/" && req.method === "DELETE") {
         res.statusCode = 200;
         res.end("DELETE Request");
