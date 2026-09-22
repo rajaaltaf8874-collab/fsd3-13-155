@@ -1,17 +1,17 @@
-import http, { get } from 'http';
-import { getAllProducts } from '../products.js';
-
+import http from 'http';
+import { getAllProducts,addProduct,deleteProduct } from './products.js';
 const server = http.createServer((req, res) => {
     if (req.url === "/api/v1/products" && req.method === "GET") {
         res.statusCode = 200;
         const data = getAllProducts();
-        // res.end("GET Request");
-        res.setHeader("Content-type","application/json");
-        res.end(JSON.stringify({
-            "count" : data.length,
-            data,
-        })
-    );
+        res.setHeader("Content-Type", "application/json");
+        res.end(
+            JSON.stringify({
+             count: data.length,
+              data,
+
+        }));
+        
 
     
     } else if (req.url === "/api/v1/products" && req.method === "POST") {
@@ -37,17 +37,23 @@ const server = http.createServer((req, res) => {
         req.on("end", () => {
             const product = JSON.parse(body);
             console.log("received product:", product);
+            const item=addProduct(product)
             res.statusCode = 201;
-        res.end(JSON.stringify({ message: "product updated",product }));
+        res.end(JSON.stringify({ message: "product added",data:item }));
         });
     
-    } else if (req.url === "/" && req.method === "DELETE") {
+    } else if (req.url.startsWith("/api/v1/products/") && req.method === "DELETE") {
+        const pid=Number(req.url.split('/').pop());
+
+
         res.statusCode = 200;
-        res.end("DELETE Request");
+        if(deleteProduct(pid)){
+            res.end(JSON.stringify({msg:"item deleted"}));
+        }
     }
     else{
-        res.statusCode = 404;
-        res.end("Not Found");
+        
+        res.end(JSON.stringify({msg:"product with id ${pid} not found"}));
     }
 });
 server.listen(5000, () => console.log("prg6 is running"));
