@@ -77,5 +77,9 @@ every request from client has a pair of { request ,response}
    4. text/CSS -> stylesheet
    5. application/form -> for upoading file 
    6. application/auth -> for tokens the headers can be set by res object at server side by two ways.
+   7. GET -> no parameter pass to the server when we receive all item.
+   8. post-> to add record we pass the value from body section in JSON format of api tester.
+   9. Delete-> to delete any product we paas parameter that is id of the product.
+   10. we pass id from url and data to update from body 
 
 
